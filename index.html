@@ -1,1436 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cisco CSAP Interview Prep — Khaled Almuwahed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CSAP Assessment Centre: Interview Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#08131f;
-  --panel:#0f1e2d;
-  --panel2:#142638;
-  --panel3:#193047;
-  --text:#eef7ff;
-  --muted:#9fb2c4;
-  --line:#27425a;
-  --cyan:#35c2e8;
-  --cyan2:#79ddf4;
-  --green:#55d68b;
-  --amber:#ffc857;
-  --red:#ff7a7a;
-  --purple:#b7a2ff;
-  --white:#ffffff;
-  --shadow:0 14px 38px rgba(0,0,0,.26);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:
-    radial-gradient(circle at 10% 0%, rgba(53,194,232,.10), transparent 28%),
-    radial-gradient(circle at 96% 10%, rgba(183,162,255,.08), transparent 26%),
-    var(--bg);
-  color:var(--text);
-  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  line-height:1.6;
-}
-button,input{font:inherit}
-.hero{
-  padding:34px 18px 26px;
-  border-bottom:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0));
-}
-.hero-inner{max-width:1120px;margin:0 auto}
-.eyebrow{
-  display:inline-flex;gap:8px;align-items:center;
-  font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--cyan2)
-}
-.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:10px 0 12px}
-.hero p{max-width:820px;color:var(--muted);font-size:16px;margin:0 0 18px}
-.badges{display:flex;gap:8px;flex-wrap:wrap}
-.badge{
-  border:1px solid var(--line);border-radius:999px;padding:6px 10px;
-  font-size:11px;font-weight:800;letter-spacing:.05em;background:rgba(255,255,255,.03)
-}
-.badge.cyan{color:var(--cyan2);border-color:rgba(53,194,232,.5)}
-.badge.green{color:var(--green);border-color:rgba(85,214,139,.45)}
-.badge.amber{color:var(--amber);border-color:rgba(255,200,87,.45)}
-.top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.action{
-  border:1px solid var(--line);color:var(--text);background:var(--panel2);
-  padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:700;font-size:12px
-}
-.action:hover{border-color:var(--cyan);color:var(--cyan2)}
-.nav-wrap{
-  position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);
-  background:rgba(8,19,31,.96);backdrop-filter:blur(12px)
-}
-.nav{
-  max-width:1120px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 8px
-}
-.nav::-webkit-scrollbar{display:none}
-.nav button{
-  background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);
-  padding:14px 12px;white-space:nowrap;cursor:pointer;font-size:12px;font-weight:800
-}
-.nav button.active{color:var(--cyan2);border-bottom-color:var(--cyan)}
-.main{max-width:1120px;margin:0 auto;padding:24px 16px 70px}
-.tab{display:none}
-.tab.active{display:block}
-.section-head{margin-bottom:18px}
-.section-head h2{margin:0 0 4px;font-size:25px}
-.section-head p{margin:0;color:var(--muted);max-width:850px}
-.grid{display:grid;gap:14px}
-.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr}}
-.card{
-  background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.012)),var(--panel);
-  border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)
-}
-.card h3,.card h4{margin-top:0}
-.card h3{font-size:17px;margin-bottom:8px}
-.card h4{font-size:14px;margin-bottom:6px;color:var(--cyan2)}
-.card p:last-child{margin-bottom:0}
-.muted{color:var(--muted)}
-.small{font-size:12.5px}
-.kicker{
-  font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:900;color:var(--cyan2);margin-bottom:5px
-}
-.pill{
-  display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 8px;
-  font-size:10px;font-weight:900;letter-spacing:.05em;border:1px solid
-}
-.verified{color:var(--green);border-color:rgba(85,214,139,.45);background:rgba(85,214,139,.08)}
-.current{color:var(--cyan2);border-color:rgba(53,194,232,.45);background:rgba(53,194,232,.08)}
-.memory{color:var(--amber);border-color:rgba(255,200,87,.45);background:rgba(255,200,87,.08)}
-.removed{color:var(--red);border-color:rgba(255,122,122,.45);background:rgba(255,122,122,.08)}
-.purple{color:var(--purple);border-color:rgba(183,162,255,.45);background:rgba(183,162,255,.08)}
-.callout{
-  border:1px solid var(--line);border-left:4px solid var(--cyan);background:var(--panel2);
-  border-radius:11px;padding:14px 15px;margin:14px 0
-}
-.callout.green{border-left-color:var(--green)}
-.callout.amber{border-left-color:var(--amber)}
-.callout.red{border-left-color:var(--red)}
-.script{
-  font-size:16px;line-height:1.78;background:#0a1724;border:1px solid var(--line);
-  border-radius:12px;padding:18px;white-space:normal
-}
-.script strong{color:var(--cyan2)}
-.script-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}
-.copybtn{
-  background:transparent;border:1px solid var(--line);color:var(--muted);
-  padding:6px 9px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:800
-}
-.copybtn:hover{color:var(--cyan2);border-color:var(--cyan)}
-.metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-@media(max-width:700px){.metric-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.metric{
-  border:1px solid var(--line);background:var(--panel2);border-radius:11px;padding:12px
-}
-.metric b{display:block;font-size:22px;color:var(--cyan2)}
-.metric span{font-size:11px;color:var(--muted);font-weight:700}
-.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-table{border-collapse:collapse;width:100%;min-width:700px;background:var(--panel)}
-th,td{padding:12px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:13px}
-th{background:var(--panel2);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-tr:last-child td{border-bottom:0}
-.good{color:var(--green);font-weight:800}
-.warn{color:var(--amber);font-weight:800}
-.bad{color:var(--red);font-weight:800}
-.accordion{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;background:var(--panel)}
-.acc-btn{
-  width:100%;display:flex;gap:10px;align-items:center;text-align:left;padding:14px 15px;
-  background:transparent;color:var(--text);border:0;cursor:pointer
-}
-.acc-btn:hover{background:rgba(255,255,255,.02)}
-.acc-q{flex:1;font-weight:800;font-size:14px}
-.chev{color:var(--muted);transition:.2s}
-.acc-btn.open .chev{transform:rotate(180deg);color:var(--cyan2)}
-.acc-body{display:none;padding:0 15px 15px}
-.acc-body.open{display:block}
-.answer{
-  background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px;margin-top:8px
-}
-.answer b{color:var(--cyan2)}
-.story{
-  position:relative;padding-top:22px
-}
-.story .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.tag{
-  font-size:10px;border-radius:999px;padding:4px 7px;background:rgba(255,255,255,.04);
-  border:1px solid var(--line);color:var(--muted);font-weight:800
-}
-.story ul,.card ul{padding-left:20px;margin-top:8px}
-.story li,.card li{margin-bottom:5px}
-.story .facts{background:var(--panel2);border-radius:9px;padding:10px 12px;margin:10px 0;font-size:13px}
-.story .memory-fill{border:1px dashed rgba(255,200,87,.5);background:rgba(255,200,87,.05);border-radius:9px;padding:10px 12px;font-size:13px}
-.framework{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:12px 0
-}
-.framework div{background:var(--panel2);border:1px solid var(--line);padding:9px;border-radius:8px;text-align:center;font-size:11px}
-@media(max-width:700px){.framework{grid-template-columns:1fr}.framework div{text-align:left}}
-.practice{
-  border:1px solid rgba(183,162,255,.45);background:rgba(183,162,255,.06);border-radius:14px;padding:16px
-}
-.practice-q{font-size:20px;font-weight:850;line-height:1.35;margin:10px 0 14px}
-.practice-controls{display:flex;gap:8px;flex-wrap:wrap}
-.hidden-answer{display:none;margin-top:12px;background:var(--panel2);padding:12px;border-radius:10px;border:1px solid var(--line)}
-.checkgroup{margin-bottom:22px}
-.checkgroup h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.11em}
-.check{
-  display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer
-}
-.check input{margin-top:4px;accent-color:var(--cyan)}
-.check.done span{color:var(--muted);text-decoration:line-through}
-.audit-row{
-  display:grid;grid-template-columns:145px 1fr 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)
-}
-.audit-row:last-child{border-bottom:0}
-@media(max-width:800px){.audit-row{grid-template-columns:1fr}}
-.source{
-  border-top:1px solid var(--line);padding-top:12px;margin-top:12px;color:var(--muted);font-size:11px
-}
-.quote-line{border-left:3px solid var(--purple);padding-left:12px;color:#d9d1ff}
-.numlist{counter-reset:item;list-style:none;padding:0;margin:0}
-.numlist li{counter-increment:item;margin:0 0 10px;position:relative;padding-left:34px}
-.numlist li:before{
-  content:counter(item);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;
-  display:grid;place-items:center;background:rgba(53,194,232,.12);color:var(--cyan2);font-weight:900;font-size:11px
-}
-hr.sep{border:0;border-top:1px solid var(--line);margin:22px 0}
-.footer{max-width:1120px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:11px}
-.print-note{display:none}
-@media print{
-  body{background:white;color:#111}
-  .nav-wrap,.top-actions,.copybtn,.practice-controls{display:none!important}
-  .main{max-width:none;padding:10px}
-  .tab{display:block!important;page-break-before:always}
-  .tab:first-child{page-break-before:auto}
-  .card,.accordion,.script,.answer,.table-wrap{box-shadow:none;border-color:#ccc;background:white;color:#111}
-  .muted,.source{color:#555}
-  .script strong,.card h4,.good{color:#0a6f8d}
-  .print-note{display:block}
-}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f6fa;--sf:#fff;--sf2:#e8eef6;--bd:#d3dce9;--tx:#0e1a2b;--mu:#586880;--ac:#0879ab;--S:#2f7de1;--T:#0f9d8a;--A:#d17f00;--R:#2e9e4f;--L:#8b5cf6;--rd:#d64545;--fl:#fff1b8}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#08101d;--sf:#0f1a2c;--sf2:#16243a;--bd:#22344f;--tx:#e6edf7;--mu:#8fa1ba;--ac:#3cc3f2;--S:#5a9bff;--T:#2cc7b1;--A:#f0a530;--R:#4cc46f;--L:#a785ff;--rd:#ff6b6b;--fl:#4a3d0c}}
+:root[data-theme=dark]{--bg:#08101d;--sf:#0f1a2c;--sf2:#16243a;--bd:#22344f;--tx:#e6edf7;--mu:#8fa1ba;--ac:#3cc3f2;--S:#5a9bff;--T:#2cc7b1;--A:#f0a530;--R:#4cc46f;--L:#a785ff;--rd:#ff6b6b;--fl:#4a3d0c}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.55 'Instrument Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.15}
+.m{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+header{padding:28px 18px 22px;background:radial-gradient(90% 120% at 0 0,color-mix(in srgb,var(--ac) 22%,transparent),transparent 60%),var(--sf);border-bottom:1px solid var(--bd)}
+.w{max-width:860px;margin:auto}
+h1{font-size:clamp(28px,6vw,42px);font-weight:800;margin:6px 0 8px}
+h1 em{font-style:normal;color:var(--ac)}
+.bd{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.bd span,.bd button{font:500 11px 'JetBrains Mono',monospace;padding:4px 9px;border:1px solid var(--bd);border-radius:99px;background:var(--sf2);color:var(--tx);cursor:pointer}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--sf);border-bottom:1px solid var(--bd);overflow-x:auto;white-space:nowrap}
+nav .w{display:flex}
+nav button{background:none;border:0;border-bottom:3px solid transparent;color:var(--mu);font:600 14px 'Instrument Sans',sans-serif;padding:14px 14px;cursor:pointer}
+nav button.on{color:var(--tx);border-color:var(--ac)}
+main{padding:22px 16px 70px}
+.s{display:none}.s.on{display:block}
+h2{font-size:26px;margin:4px 0 6px}
+.lead{color:var(--mu);margin-bottom:16px}
+.c{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:12px 0}
+.c h3{font-size:17px;margin-bottom:6px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.g .c{margin:0}
+ul{padding-left:18px}li{margin:4px 0}
+.bar{display:flex;height:34px;border-radius:9px;overflow:hidden;margin:10px 0 4px;font:600 12px 'JetBrains Mono',monospace;color:#fff}
+.bar b{display:flex;align-items:center;justify-content:center}
+.k{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;color:#fff;font:700 13px 'JetBrains Mono',monospace;margin-right:8px;flex:none}
+.S{--x:var(--S)}.T{--x:var(--T)}.A{--x:var(--A)}.R{--x:var(--R)}.L{--x:var(--L)}
+.k,.bar b{background:var(--x)}
+.row{display:flex;gap:2px;margin:8px 0;align-items:flex-start}
+.row div{flex:1}.row b{color:var(--x)}
+details{background:var(--sf);border:1px solid var(--bd);border-radius:14px;margin:10px 0}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary:after{content:'+';color:var(--ac);font-size:20px}
+details[open] summary:after{content:'-'}
+.in{padding:0 16px 16px}
+.tag{font:500 10px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:5px;background:var(--sf2);color:var(--ac);margin-right:8px;white-space:nowrap}
+mark.f{background:var(--fl);color:var(--tx);padding:0 4px;border-radius:4px}
+.w2{border-left:3px solid var(--rd);padding:8px 12px;background:var(--sf2);border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+.ok{border-color:var(--R)}
+.cover .ans{filter:blur(7px);cursor:pointer;user-select:none}.cover .ans.show{filter:none}
+button.p{background:var(--ac);color:#fff;border:0;border-radius:9px;padding:9px 14px;font:600 14px 'Instrument Sans',sans-serif;cursor:pointer}
+.ck{display:flex;gap:10px;padding:8px 0;cursor:pointer}
+.ck i{width:20px;height:20px;border:2px solid var(--bd);border-radius:6px;flex:none;display:grid;place-items:center;font-style:normal;font-size:13px;color:#fff}
+.ck.d i{background:var(--R);border-color:var(--R)}.ck.d span{opacity:.55;text-decoration:line-through}
+small{color:var(--mu)}
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Cisco CSAP · UAE ASR · Interview Prep</div>
-    <h1>Khaled Almuwahed — Audited Prep Guide</h1>
-    <p>
-      Rebuilt around your preferred chronological “Tell me about yourself” flow, your uploaded resume,
-      Cisco’s candidate resources, and a current audit of the 2026/2027 CSAP role and Cisco’s AI-era positioning.
-      Unsupported claims from the old guide were removed or clearly marked.
-    </p>
-    <div class="badges">
-      <span class="badge cyan">PRIMARY: SALES / COMMERCIAL FIT</span>
-      <span class="badge green">RESUME-GROUNDED STORIES</span>
-      <span class="badge amber">MEMORY GAPS FLAGGED</span>
-      <span class="badge">LONDON → DUBAI</span>
-      <span class="badge">TARGET START: 1 MAR 2027</span>
-      <span class="badge">JOB ID: 2018684</span>
-      <span class="badge">POSTED: 31 JUL 2026</span>
-    </div>
-    <div class="top-actions">
-      <button class="action" onclick="showTab('tmay')">Start with TMAY</button>
-      <button class="action" onclick="showTab('qa')">Practice Questions</button>
-      <button class="action" onclick="window.print()">Print / Save PDF</button>
-    </div>
-  </div>
-</header>
-
-<div class="nav-wrap">
-  <nav class="nav">
-    <button class="active" data-tab="home">10-Minute View</button>
-    <button data-tab="tmay">Tell Me About Yourself</button>
-    <button data-tab="fit">Role Fit</button>
-    <button data-tab="cisco">Cisco 2026</button>
-    <button data-tab="stories">Story Bank</button>
-    <button data-tab="qa">Q&amp;A</button>
-    <button data-tab="roleplay">Sales Roleplay</button>
-    <button data-tab="ask">Ask Them</button>
-    <button data-tab="audit">Audit &amp; Risks</button>
-    <button data-tab="final">Final 24h</button>
-  </nav>
-</div>
-
-<main class="main">
-
-<section class="tab active" id="home">
-  <div class="section-head">
-    <h2>10-Minute View</h2>
-    <p>If you only have ten minutes before the interview, know this page cold.</p>
-  </div>
-
-  <div class="metric-row">
-    <div class="metric"><b>27%</b><span>P&amp;G expiry / disposal cost reduction</span></div>
-    <div class="metric"><b>80%</b><span>P&amp;G reporting / approval time reduction</span></div>
-    <div class="metric"><b>1,800+</b><span>ArcelorMittal quality data points analyzed</span></div>
-    <div class="metric"><b>12 mo.</b><span>CSAP accelerator in Bedfont Lakes before Dubai</span></div>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="kicker">Your Core Positioning</div>
-      <h3>Analytical operator moving deliberately into commercial ownership</h3>
-      <p>
-        Your strongest narrative is not “engineer who discovered sales.” It is:
-        <strong>you already solve business problems, translate analysis into action, and work across stakeholders;
-        now you want to own the customer conversation and revenue outcome directly.</strong>
-      </p>
-      <div class="callout green small">
-        The bridge is clean: Industrial Engineering → P&amp;G process ownership → 180DC client work → SAP GTM / sales enablement → Cisco CSAP.
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="kicker">What Cisco Is Hiring For</div>
-      <h3>Your best evidence against the current ASR profile</h3>
-      <ul>
-        <li><b>Critical thinking / problem solving:</b> Industrial Engineering, pricing, market sizing, P&amp;G redesign.</li>
-        <li><b>Digital fluency / AI:</b> SAP AI GTM and AI adoption, Power BI, Power Automate, KNIME.</li>
-        <li><b>Storytelling / translating complexity:</b> INJAZ pitch, SAP messaging frameworks, workshops.</li>
-        <li><b>High EQ / stakeholder navigation:</b> consulting clients, cross-functional teams, global offsites.</li>
-        <li><b>Strategic creativity:</b> pricing, market sizing, process redesign and AI use-case identification.</li>
-        <li><b>Storytelling / negotiation:</b> INJAZ senior-leader pitch and SAP messaging; prepare one genuine negotiation example from memory.</li>
-        <li><b>Commercial resilience:</b> you need one real “no” / setback example from memory.</li>
-        <li><b>AI-enabled selling mindset:</b> connect your SAP AI work and analytics background to prospecting, market analysis and sales-cycle acceleration.</li>
-        <li><b>Language / market fit:</b> Arabic + English, Dubai-based, UAE Golden Visa.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">The 5 Answers You Must Nail</div>
-    <div class="grid two">
-      <div>
-        <h4>1. Tell me about yourself</h4>
-        <p class="small muted">Chronological, natural, 2 minutes. End on direct customer / revenue ownership.</p>
-        <h4>2. Why sales?</h4>
-        <p class="small muted">The pattern across your roles: diagnosis → communication → influence → outcome.</p>
-        <h4>3. Why Cisco?</h4>
-        <p class="small muted">AI-era infrastructure + security, CSAP structure, regional relevance.</p>
-      </div>
-      <div>
-        <h4>4. Why CSAP / why London?</h4>
-        <p class="small muted">Structured accelerator, rotations, simulations, mentoring, certifications, then IAE in Dubai.</p>
-        <h4>5. Why you?</h4>
-        <p class="small muted">Analytical rigor + commercial exposure + technology fluency + bilingual UAE fit.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="callout amber">
-    <b>Cisco’s own candidate pack matters:</b> its interview diagram frames a successful interview around
-    <b>Motivation, Communication, and Competency-based questions</b>. The following page explicitly tells candidates
-    to use STAR and to focus on what <b>“I”</b> did rather than hiding behind “we.” That is the lens used throughout this guide.
-  </div>
-
-  <div class="card">
-    <div class="kicker">One-Sentence Cisco View</div>
-    <p class="quote-line">
-      “Cisco’s relevance in the AI era is that AI only works at scale when the underlying networking, security,
-      observability and infrastructure are reliable — and Cisco is trying to own that connective layer.”
-    </p>
-    <div class="source">Grounding: Cisco’s current strategy emphasizes modern infrastructure, cyber protection, AI/data, and the critical infrastructure required for the AI era.</div>
-  </div>
-</section>
-
-
-<section class="tab" id="tmay">
-  <div class="section-head">
-    <h2>Tell Me About Yourself</h2>
-    <p>Your preferred flow: degree → what it actually taught you → P&amp;G → 180DC → SAP → why CSAP / Cisco now.</p>
-  </div>
-
-  <div class="card">
-    <div class="script-toolbar">
-      <div>
-        <span class="pill verified">PRIMARY VERSION</span>
-        <span class="pill purple">~2 MINUTES</span>
-      </div>
-      <button class="copybtn" onclick="copyBlock('tmay-primary',this)">Copy</button>
-    </div>
-    <div class="script" id="tmay-primary">
-      Hi, my name is <strong>Khaled Almuwahed</strong>. I recently graduated from the
-      <strong>American University of Sharjah</strong> with a degree in Industrial Engineering.
-      My degree gave me a strong foundation in <strong>problem solving, data analysis, and process optimization</strong>.
-      But to be completely honest, it ended up being more useful than I expected because it constantly put me in
-      situations where I had to work with people from different backgrounds, communicate ideas clearly, and break down
-      problems of very different sizes and complexity.
-      <br><br>
-      Last year, I interned at <strong>Procter &amp; Gamble</strong> in Supply Network Operations.
-      I redesigned distributor target inventory and automated the planning workflow end to end, helping cut
-      <strong>expiry and disposal costs by 27%</strong> and reduce <strong>reporting and approval time by 80%</strong>.
-      <br><br>
-      Alongside university, I worked as a consultant with <strong>180 Degrees Consulting</strong>,
-      the world’s largest university-based consultancy for nonprofits and socially conscious organizations.
-      Across two client projects, I worked on <strong>pricing strategy</strong> and
-      <strong>market sizing and mapping</strong>, which gave me client-facing experience and taught me how to turn
-      analysis into practical recommendations.
-      <br><br>
-      Currently, I’m interning at <strong>SAP</strong> in Global Strategic Sales Programs within Business Transformation Management.
-      I support go-to-market strategy for AI offerings, drive early AI adoption across the Chief Revenue Office,
-      and help enable sales teams to translate product capabilities into clear commercial messaging.
-      <br><br>
-      I applied to <strong>Cisco’s CSAP</strong> because, across all of those experiences, I realized the part I enjoy most
-      is not just doing the analysis. It’s understanding a problem, communicating a solution, and getting people to act on it.
-      CSAP gives me a structured path into <strong>direct customer and revenue ownership</strong> while building the technical-sales
-      foundation across Cisco’s portfolio. Cisco also stands out to me because networking and security are becoming even more critical
-      in the AI era, especially here in the UAE. So for me, this feels like a very natural next step.
-    </div>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="script-toolbar">
-        <div><span class="pill current">PHONE / FAST VERSION</span><span class="pill">~90 SEC</span></div>
-        <button class="copybtn" onclick="copyBlock('tmay-short',this)">Copy</button>
-      </div>
-      <div class="script small" id="tmay-short">
-        Hi, my name is Khaled Almuwahed. I recently graduated from the American University of Sharjah with a degree in Industrial Engineering.
-        The degree gave me a strong base in problem solving and data analysis, but what I found most valuable was learning how to work with different people,
-        communicate ideas clearly, and structure complex problems.
-        <br><br>
-        Last year, I interned at P&amp;G in Supply Network Operations, where I redesigned distributor target inventory and automated a planning workflow
-        that helped reduce expiry and disposal costs by 27% and reporting and approval time by 80%.
-        <br><br>
-        I also worked with 180 Degrees Consulting on client projects involving pricing strategy and market sizing.
-        Currently, I’m interning at SAP in Global Strategic Sales Programs, working on AI go-to-market strategy, AI adoption across the Chief Revenue Office,
-        and sales enablement.
-        <br><br>
-        I applied to Cisco’s CSAP because I want to move closer to the customer and own commercial outcomes directly.
-        Across my experiences, the part I’ve enjoyed most has been understanding a problem, communicating a solution, and getting people to act on it.
-        CSAP combines that with structured technical-sales development, and Cisco’s position in networking, security and AI infrastructure makes it especially exciting to me in this region.
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="kicker">Delivery Map</div>
-      <h3>How to sound natural, not memorized</h3>
-      <ul>
-        <li><b>0:00–0:25 — Degree:</b> relaxed pace. This is context, not the climax.</li>
-        <li><b>0:25–0:55 — P&amp;G:</b> slow down on <b>27%</b> and <b>80%</b>.</li>
-        <li><b>0:55–1:15 — 180DC:</b> emphasize client-facing recommendation work.</li>
-        <li><b>1:15–1:40 — SAP:</b> make the shift toward GTM / sales enablement obvious.</li>
-        <li><b>1:40–2:05 — Cisco:</b> look at the interviewer/camera; land the “why now.”</li>
-      </ul>
-      <div class="callout green small">
-        Memorize the <b>sequence and proof points</b>, not every word. If you lose a sentence, keep moving.
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">Why this flow works</div>
-    <div class="grid three">
-      <div>
-        <h4>It sounds like you</h4>
-        <p class="small muted">Straight chronological story instead of a manufactured “commercial epiphany.”</p>
-      </div>
-      <div>
-        <h4>It shows progression</h4>
-        <p class="small muted">Technical problem solving → client recommendations → commercial GTM → direct sales.</p>
-      </div>
-      <div>
-        <h4>It answers “why now”</h4>
-        <p class="small muted">You are not escaping engineering. You are adding ownership of customer and revenue outcomes.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="callout red">
-    <b>Do not accidentally say:</b> American University of Georgia, “S/4HANA certified,” Claude Code / multi-agent workflows,
-    or “first P&amp;G intern to get a project into next year’s strategy.” Those were not supported by the uploaded resume.
-  </div>
-</section>
-
-
-<section class="tab" id="fit">
-  <div class="section-head">
-    <h2>Role Fit — Current CSAP ASR Profile</h2>
-    <p>Use this to answer “Why should we hire you?” and to understand exactly what the program is trying to build.</p>
-  </div>
-
-  <div class="card">
-    <div class="kicker">Exact Posting Snapshot</div>
-    <div class="grid three">
-      <div>
-        <h4>Role</h4>
-        <p class="small"><b>Associate Sales Representative - CSAP - UAE</b><br>Full time · Dubai · Job ID 2018684</p>
-      </div>
-      <div>
-        <h4>Timing</h4>
-        <p class="small">Posted <b>31 July 2026</b><br>Target start <b>1 March 2027</b></p>
-      </div>
-      <div>
-        <h4>Location</h4>
-        <p class="small">Year 1: <b>London, Bedfont Lakes</b><br>Year 2: <b>Dubai, UAE</b></p>
-      </div>
-    </div>
-    <div class="callout amber small">
-      The posting explicitly says it advertises <b>potential job opportunities</b> and the exact role may not be open today.
-      That is a recruiting/headcount note, not something you need to raise unless the recruiter discusses timing.
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">Current UAE ASR Structure</div>
-    <div class="framework">
-      <div><b>Months 1–3</b><br>Bedfont Lakes bootcamp</div>
-      <div><b>Months 3–12</b><br>3 rotations</div>
-      <div><b>Quarterly</b><br>competency checkpoints</div>
-      <div><b>Throughout</b><br>AI simulations + mentoring</div>
-      <div><b>After 12 mo.</b><br>Inside Account Executive, Dubai</div>
-    </div>
-    <p class="small muted">
-      Current role language also emphasizes an <b>AI-First Mandate</b>, collaboration with Associate Solutions Engineers,
-      learning across Collaboration, Security, Networking and Cloud, and the possibility for high performers to fast-track into quota-carrying roles.
-    </p>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">Decode the Preferred Requirements</div>
-    <div class="grid two">
-      <div>
-        <h4>“High emotional intelligence + interpersonal tenacity”</h4>
-        <p class="small">They want someone who can build trust, keep relationships moving, and operate through complex stakeholder groups without becoming transactional.</p>
-        <h4>“Strategic creativity / original thinking”</h4>
-        <p class="small">They want judgment under ambiguity — not someone who waits for a script.</p>
-        <h4>“Commercial resilience”</h4>
-        <p class="small">They explicitly want evidence that you can hear “no,” pivot under pressure, and keep pursuing revenue outcomes.</p>
-      </div>
-      <div>
-        <h4>“Socially-native technology enthusiast”</h4>
-        <p class="small">Be ready to explain how you use AI and digital tools for research, analysis, prioritization, communication or workflow acceleration.</p>
-        <h4>“Masterful storyteller and negotiator”</h4>
-        <p class="small">Translate technical detail into a customer outcome, handle objections, and create a path where both sides win.</p>
-        <h4>“Bridge business challenges and Cisco technology”</h4>
-        <p class="small">Your job is not to be the deepest engineer. Your job is to diagnose the business problem and work with the Solutions Engineer to connect it to the right technical solution.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-wrap" style="margin-top:14px">
-    <table>
-      <thead>
-        <tr><th>What they want</th><th>Your evidence</th><th>Interview line</th><th>Readiness</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Critical thinking / creative problem solving</td>
-          <td>Industrial Engineering; P&amp;G redesign; 180DC pricing and market sizing</td>
-          <td>“I’m comfortable taking a messy problem and turning it into a structured decision.”</td>
-          <td class="good">Strong</td>
-        </tr>
-        <tr>
-          <td>Digital fluency / AI mindset</td>
-          <td>SAP AI GTM and adoption; Power BI, Power Automate, KNIME; Google AI Essentials</td>
-          <td>“I’ve worked on both adoption and commercial positioning of AI, not just used it personally.”</td>
-          <td class="good">Strong</td>
-        </tr>
-        <tr>
-          <td>High EQ / relationship building</td>
-          <td>180DC clients; global SAP offsites; workshops; volunteer leadership</td>
-          <td>“My best work has always required alignment across people with different priorities.”</td>
-          <td class="good">Strong</td>
-        </tr>
-        <tr>
-          <td>Storytelling / translate complexity into business value</td>
-          <td>SAP messaging frameworks; INJAZ pitch to senior leaders; P&amp;G dashboard</td>
-          <td>“I like taking something complex and making the decision obvious for the audience.”</td>
-          <td class="good">Strong</td>
-        </tr>
-        <tr>
-          <td>Commercial resilience / rejection tolerance</td>
-          <td>No explicit resume example</td>
-          <td>Prepare one real story from memory where you heard “no,” adjusted, and kept going.</td>
-          <td class="warn">Prepare</td>
-        </tr>
-        <tr>
-          <td>Quota / direct sales ownership</td>
-          <td>No direct quota-carrying role yet</td>
-          <td>“That is the skill gap I’m deliberately choosing CSAP to build.”</td>
-          <td class="warn">Gap, but logical</td>
-        </tr>
-        <tr>
-          <td>Socially-native tech enthusiast / AI-enabled selling</td>
-          <td>SAP AI GTM/adoption; market sizing; Power BI/automation; Google AI Essentials</td>
-          <td>“I’d use AI to sharpen research and prioritization, but keep human judgment in discovery and relationship-building.”</td>
-          <td class="good">Strong</td>
-        </tr>
-        <tr>
-          <td>Masterful storyteller / negotiator / win-win outcomes</td>
-          <td>INJAZ senior-leader pitch; SAP commercial messaging; consulting recommendations</td>
-          <td>Storytelling is evidenced; prepare one genuine negotiation / trade-off example from memory.</td>
-          <td class="warn">Story strong; negotiation proof needed</td>
-        </tr>
-        <tr>
-          <td>Arabic + English</td>
-          <td>Arabic native, English fluent</td>
-          <td>Use naturally; it is a stated requirement for the UAE role.</td>
-          <td class="good">Strong</td>
-        </tr>
-        <tr>
-          <td>UAE work authorization</td>
-          <td>Golden Visa listed on resume</td>
-          <td>“Yes, I’m legally authorized to work in the UAE; I hold a Golden Visa.”</td>
-          <td class="good">Strong</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="kicker">Why You — 45 Seconds</div>
-      <p>
-        “I think I bring a combination that fits CSAP well. I have the analytical discipline from Industrial Engineering,
-        proof that I can improve real processes at P&amp;G, client-facing problem solving from 180 Degrees Consulting,
-        and now commercial exposure at SAP through AI go-to-market and sales enablement. I’m also comfortable with technology,
-        fluent in Arabic and English, and already based in the UAE. The one thing I haven’t done yet is carry a quota —
-        and that is exactly the capability I want to build next.”
-      </p>
-    </div>
-    <div class="card">
-      <div class="kicker">Your Real Gap</div>
-      <h3>No quota yet — do not dodge it</h3>
-      <p>
-        The strongest framing is not “I have sales experience already.” You do not need to overclaim.
-        You have <b>commercial exposure, client work, stakeholder influence, GTM exposure and sales enablement</b>.
-        CSAP is the deliberate bridge into prospecting, discovery, pipeline and quota ownership.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<section class="tab" id="cisco">
-  <div class="section-head">
-    <h2>Cisco 2026 — What You Actually Need to Know</h2>
-    <p>Enough depth to sound commercially informed without pretending to be a network engineer.</p>
-  </div>
-
-  <div class="grid two">
-    <div class="card">
-      <div class="kicker">Corporate Strategy</div>
-      <h3>Three customer priorities</h3>
-      <ol class="numlist">
-        <li><b>Build modern infrastructure.</b></li>
-        <li><b>Protect against cyber threats today and tomorrow.</b></li>
-        <li><b>Harness the power of AI and data.</b></li>
-      </ol>
-      <p class="small muted">
-        Cisco’s strategy language ties these to outcomes such as AI-ready data centers, future-proofed workplaces and digital resilience.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="kicker">2026 Narrative</div>
-      <h3>“Critical infrastructure for the AI era”</h3>
-      <p>
-        Cisco’s current story is bigger than routers. AI increases traffic, security pressure, distributed workloads,
-        infrastructure complexity and the need for observability. Cisco is positioning networking + security + observability
-        as the foundation that lets AI run reliably from data center to edge.
-      </p>
-      <div class="callout green small">
-        If asked a technical question you do not know, anchor on the <b>business outcome</b> and say you would partner with the Solutions Engineer rather than bluff.
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">CSAP Learning Domains</div>
-    <div class="grid four"></div>
-    <div class="grid two">
-      <div>
-        <h4>Networking</h4>
-        <p class="small">Routing, switching, wireless, WAN and data-center connectivity. Business value: performance, uptime, scale and simpler operations.</p>
-        <h4>Security</h4>
-        <p class="small">Identity, access, threat protection and security embedded through infrastructure. Business value: reduce risk and improve resilience.</p>
-      </div>
-      <div>
-        <h4>Collaboration</h4>
-        <p class="small">Webex and collaboration experiences. Business value: productive, secure hybrid work and customer interaction.</p>
-        <h4>Cloud / AI infrastructure</h4>
-        <p class="small">AI-ready data centers, networking silicon, compute, cloud connectivity and observability. Business value: deploy AI faster and operate it safely.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="kicker">UAE Proof Point</div>
-      <h3>Stargate UAE</h3>
-      <p>
-        Cisco joined the Stargate UAE consortium as a preferred technology partner with G42, OpenAI, Oracle, NVIDIA and SoftBank.
-        The announced plan targets a <b>1 GW AI data center in Abu Dhabi</b>, with Cisco providing
-        <b>networking, security and observability</b> solutions for OpenAI workloads.
-      </p>
-      <p class="small muted">
-        Use it once to show regional research. Do not force it into every answer.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="kicker">Current Product Examples — Optional</div>
-      <h3>Know 3 names, not 30</h3>
-      <ul>
-        <li><b>Secure AI Factory with NVIDIA:</b> full-stack infrastructure for deploying AI securely.</li>
-        <li><b>Cisco Cloud Control / AgenticOps:</b> unified operations for humans and AI agents across infrastructure.</li>
-        <li><b>Silicon One / AI networking:</b> high-performance networking built for demanding AI workloads.</li>
-      </ul>
-      <p class="small muted">These are useful proof points. The interview is still about your commercial thinking, not product trivia.</p>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">Why Cisco — 60 Seconds</div>
-    <p>
-      “Cisco stands out to me for three reasons. First is the market timing: AI is making the network, security and observability layer more important,
-      not less, and Cisco is positioned directly in that infrastructure shift. Second is CSAP itself — the combination of bootcamp, rotations,
-      AI simulations, mentoring and certifications is a very structured way to build real technical-sales capability rather than just learn theory.
-      Third is the regional relevance. Cisco is already involved in major AI infrastructure development in the UAE, including Stargate UAE.
-      I want to build my sales career in this market, so the combination of the technology, the program and the region is unusually strong for me.”
-    </p>
-  </div>
-</section>
-
-
-<section class="tab" id="stories">
-  <div class="section-head">
-    <h2>Story Bank</h2>
-    <p>Facts below come from your resume or your message. Amber boxes are details you must fill from memory before the interview — do not invent them in the room.</p>
-  </div>
-
-  <div class="grid two">
-
-    <div class="card story">
-      <div class="tags"><span class="tag">DATA</span><span class="tag">OWNERSHIP</span><span class="tag">PROCESS IMPROVEMENT</span><span class="tag">IMPACT</span></div>
-      <h3>P&amp;G — Inventory &amp; Planning Automation</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> redesigned distributor target inventory; built an automated planning workflow;
-        cut expiry/disposal costs 27%; reduced reporting/approval time 80%; built Power BI + Power Automate visibility.
-      </div>
-      <p><b>Use for:</b> data-driven decision, process improvement, ownership, innovation, prioritization, influencing adoption.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> What was broken originally? Who needed to approve the change? What pushback did you face?
-        What exact decisions did the dashboard change? Which action was uniquely yours?
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">COMMERCIAL</span><span class="tag">CLIENT</span><span class="tag">PRICING</span></div>
-      <h3>180DC — Pricing Strategy</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> broke down a complex pricing problem into a structured, data-backed analysis and recommended an optimal pricing strategy.
-      </div>
-      <p><b>Use for:</b> ambiguous problem, recommendation, commercial judgment, client communication.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> What was the client’s business model? What options did you evaluate? What data was incomplete?
-        What recommendation did you make and how did the client respond?
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">GTM</span><span class="tag">MARKET ANALYSIS</span><span class="tag">AMBIGUITY</span></div>
-      <h3>180DC — Market Sizing &amp; Mapping</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> built market sizing and mapping models to quantify opportunity and delivered a data-driven GTM strategy used to inform expansion decisions.
-      </div>
-      <p><b>Use for:</b> new market, account prioritization, structured thinking, research under ambiguity.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> Market definition, top assumptions, data sources, how you validated estimates, and the expansion recommendation.
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">AI</span><span class="tag">GTM</span><span class="tag">SALES ENABLEMENT</span><span class="tag">INFLUENCE</span></div>
-      <h3>SAP — AI GTM &amp; Adoption</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> own GTM strategy discussions for AI offerings; translate capabilities into positioning/messaging;
-        drive early AI adoption across the Chief Revenue Office; identify use cases and roll out tools/workflows; enable sales reps through global offsites.
-      </div>
-      <p><b>Use for:</b> why sales, stakeholder influence, change management, AI fluency, translating technical capability into business value.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> One specific AI use case; who had to adopt it; what objection you heard; what changed after rollout; any metric you can defend.
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">ANALYTICS</span><span class="tag">CONFIDENTIALITY</span><span class="tag">TEACHING</span></div>
-      <h3>ArcelorMittal — Quality Analytics</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> analyzed 1,800+ quality data points in Excel and Power BI; surfaced trends/outliers;
-        led internal Minitab workshops; restructured reporting templates; worked under confidentiality constraints.
-      </div>
-      <p><b>Use for:</b> technical learning, ethics/confidentiality, data analysis, teaching someone, process discipline.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> The most important trend you found, what decision it enabled, and how confidentiality affected your approach.
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">PRESENTATION</span><span class="tag">PRESSURE</span><span class="tag">LEADERSHIP</span></div>
-      <h3>INJAZ — CFO / High-Stakes Pitch</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> CFO in a 6-person cross-functional team; built a five-month feasibility study;
-        pitched to senior leaders from Mashreq, Visa and TotalEnergies; defended strategy through Q&amp;A with EY advisors.
-      </div>
-      <p><b>Use for:</b> communication, persuasion, pressure, leadership, answering objections.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> Hardest question you got, how you answered, what you would change about the pitch now.
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">LEADERSHIP</span><span class="tag">OPERATIONS</span><span class="tag">TEAMWORK</span></div>
-      <h3>Noon Minutes — Senior Design Team Lead</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> lead operational-efficiency analysis for dark-store operations with company stakeholders;
-        move concepts into prototypes/implementation.
-      </div>
-      <p><b>Use for:</b> leadership, team coordination, balancing theory with implementation, stakeholder management.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> Team size, biggest disagreement, your leadership action, prototype/result.
-      </div>
-    </div>
-
-    <div class="card story">
-      <div class="tags"><span class="tag">ADAPTABILITY</span><span class="tag">COMMUNICATION</span><span class="tag">SERVICE</span></div>
-      <h3>Ghana — International Volunteer Leader</h3>
-      <div class="facts">
-        <b>Source-backed spine:</b> led educational workshops and coordinated community development projects around education and sustainability.
-      </div>
-      <p><b>Use for:</b> adaptability, cross-cultural communication, leadership without formal authority.</p>
-      <div class="memory-fill">
-        <b>Fill from memory:</b> One moment where your original plan did not work and you had to adapt to the local context.
-      </div>
-    </div>
-  </div>
-
-  <div class="callout amber">
-    <b>Still missing from the files:</b> one clean failure story, one rejection/resilience story, and one conflict story.
-    Pick genuine examples from your memory tonight. Cisco’s candidate pack explicitly wants specific situations and clear individual actions.
-  </div>
-</section>
-
-
-<section class="tab" id="qa">
-  <div class="section-head">
-    <h2>Interview Q&amp;A</h2>
-    <p>Use the answers as structures, not scripts. For behavioral questions: Situation short, Task clear, Action detailed, Result specific, Reflection honest.</p>
-  </div>
-
-  <div class="practice">
-    <span class="pill purple">PRACTICE MODE</span>
-    <div class="practice-q" id="practice-q">Click “Random question” and answer out loud before revealing the coaching point.</div>
-    <div class="practice-controls">
-      <button class="action" onclick="randomQuestion()">Random question</button>
-      <button class="action" onclick="togglePracticeAnswer()">Reveal coaching point</button>
-    </div>
-    <div class="hidden-answer" id="practice-a"></div>
-  </div>
-
-  <hr class="sep">
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">MOTIVATION</span><span class="acc-q">Why do you want a career in sales?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Core answer:</b>
-        “Because the pattern I’ve enjoyed most across my experiences is understanding a problem, communicating a recommendation, and getting people to act.
-        Industrial Engineering gave me the problem-solving base, 180DC gave me client exposure, and SAP showed me how GTM strategy gets translated for sales teams.
-        The missing piece is direct ownership of the customer relationship and revenue outcome. I want sales because I want that accountability, not because I’m trying to get away from analytical work.”
-      </div>
-      <div class="callout green small"><b>Key signal:</b> deliberate choice. Cisco’s pack says motivation is about sharing your real story, not just saying you “really want the job.”</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">MOTIVATION</span><span class="acc-q">Why Cisco?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>3-part structure:</b> 1) AI-era infrastructure timing, 2) CSAP development model, 3) UAE relevance.
-        <br><br>
-        “Cisco is attractive to me because the network and security layer is becoming more important as AI scales, and Cisco is positioned across that infrastructure.
-        CSAP is also unusually structured — bootcamp, rotations, AI simulations, mentoring and certifications — so it gives me a serious technical-sales foundation.
-        And I want to build my career in the UAE, where Cisco is already part of major AI infrastructure projects such as Stargate UAE.”
-      </div>
-      <div class="callout amber small">Avoid “Cisco is a prestigious global company.” True but generic.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">ROLE</span><span class="acc-q">Why CSAP specifically?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “I’m at the point where I have strong analytical and commercial-adjacent experience, but I have not yet owned a quota.
-        CSAP is attractive because it is not just classroom sales training. It combines a three-month bootcamp, real rotations, quarterly checkpoints,
-        AI customer simulations, mentoring and then a defined transition into an Inside Account Executive role in Dubai.
-        That is exactly the bridge I’m looking for.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">ROLE</span><span class="acc-q">How do you feel about relocating to London for 12 months?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “I see the London year as part of the value of the program. It gives me an intensive environment with a diverse EMEA cohort,
-        structured coaching and rotations, while the end destination is still Dubai, which is where I want to build my long-term career.
-        I’ve thought through the relocation and I’m comfortable making that commitment.”
-      </div>
-      <div class="callout amber small">Only say the final sentence if it is actually true. The current role explicitly requires willingness to relocate for the full 12 months.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">FIT</span><span class="acc-q">What are three qualities of a great salesperson?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Use:</b> curiosity, resilience, and the ability to translate complexity into business value.
-        <br><br>
-        “Curiosity matters because you cannot diagnose a customer problem if you are waiting to pitch. Resilience matters because sales involves rejection and long cycles.
-        And translating complexity matters because customers do not buy features — they buy outcomes. I already have strong evidence on curiosity and translation from consulting,
-        P&amp;G and SAP; resilience is something I would prove with a real setback or rejection example.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill verified">STAR</span><span class="acc-q">Tell me about a time you used data to change how something was done.</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Best story: P&amp;G.</b><br>
-        <b>S:</b> distributor inventory/planning process created expiry/disposal cost and slow reporting.<br>
-        <b>T:</b> redesign inventory targets and make planning/reporting more efficient.<br>
-        <b>A:</b> explain the exact analysis, automation logic, dashboard/alerts and stakeholder adoption steps you personally took.<br>
-        <b>R:</b> 27% lower expiry/disposal costs and 80% lower reporting/approval time.<br>
-        <b>R2:</b> one sentence on what you learned about adoption — not just building the tool.
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill verified">STAR</span><span class="acc-q">Tell me about a time you influenced someone without authority.</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Best candidate: SAP AI adoption.</b> The resume supports that you drove early-stage adoption and rollout across the Chief Revenue Office,
-        but it does not contain the stakeholder conflict. Use a real person/group from memory:
-        what they cared about, what concern they had, how you reframed the value, what evidence/demo you used, and what changed.
-      </div>
-      <div class="callout amber small">Do not invent resistance just because the question expects it. Pick a real example.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill verified">STAR</span><span class="acc-q">Tell me about a time a project did not go to plan. What did you learn?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>No source-backed failure is in the uploaded files.</b> Prepare one genuine story.
-        Keep the failure real but bounded. Spend most of the answer on your response and what you now do differently.
-      </div>
-      <div class="callout red small">Never use a fake “failure” such as caring too much or working too hard.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">RESILIENCE</span><span class="acc-q">How do you handle rejection?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “I try to separate the outcome from the process. If I hear no, I want to understand whether it was the timing, the value proposition, the stakeholder,
-        or something I could have done differently. Then I adjust quickly and keep moving. I’d rather use rejection as data than take it personally.”
-        <br><br>
-        <b>Then add one real example from memory.</b>
-      </div>
-      <div class="callout amber small">Commercial resilience and ability to handle rejection are explicit themes in the current ASR posting. Have a proof point.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">COMMERCIAL</span><span class="acc-q">How would you break into a new account?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Simple structure:</b> trigger → map → hypothesis → discovery → align → SE → next step.
-        <br><br>
-        “I’d start with a reason the account should care now — for example an AI initiative, security pressure, infrastructure refresh or business expansion.
-        Then I’d map the decision-making unit, form a hypothesis about the likely pain, and use the first conversation for discovery rather than pitching.
-        Once there is a real technical problem, I’d bring in the Solutions Engineer and connect the solution to a measurable business outcome.
-        I’d leave every interaction with a clear next step and track whether I’m creating qualified pipeline, not just meetings.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">TECH / BUSINESS</span><span class="acc-q">What is changing about networking because of AI?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “AI raises the performance and reliability demands on infrastructure, but it also creates a larger security and observability problem.
-        Workloads are distributed from large data centers toward edge environments, and agentic systems create more constant machine-to-machine activity.
-        So the opportunity is not just faster networking; it is secure, observable infrastructure that can scale AI safely.
-        That is where Cisco’s combination of networking, security and observability is relevant.”
-      </div>
-      <div class="callout green small">You do not need to explain protocols. Show that you understand the customer problem.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">CAREER</span><span class="acc-q">Where do you see yourself in five years?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “I want to have built real credibility as an enterprise seller in this region — owning a book of business, trusted by customers,
-        and strong enough technically to have high-quality conversations with Solutions Engineers and senior customer stakeholders.
-        I’m less focused on a specific title than on becoming the kind of seller who can consistently create and close meaningful opportunities.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">CHALLENGE</span><span class="acc-q">Why leave SAP for Cisco?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “SAP has been valuable because it moved me closer to commercial strategy and showed me how products get positioned and enabled for the field.
-        What I want next is to be closer to the customer and accountable for the outcome directly. Cisco’s CSAP gives me that transition in a structured way.
-        So I would not frame it as leaving SAP because something is missing there; it is choosing the next capability I want to build.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">AI-FIRST</span><span class="acc-q">How have you used AI or digital tools to improve decision-making or accelerate work?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Best answer spine:</b> SAP first, P&amp;G second.
-        <br><br>
-        “At SAP, I’m involved in early AI adoption across the Chief Revenue Office — identifying high-impact use cases and helping roll out tools and workflows that improve sales-cycle efficiency.
-        What I’ve learned is that AI adoption only creates value when the use case is tied to an actual workflow and people trust the output.
-        Earlier at P&amp;G, I used Power BI and Power Automate to replace manual reporting and alerts. So my mindset is to use technology to remove low-value friction and make better decisions faster.”
-      </div>
-      <div class="callout green small">This maps directly to the posting’s AI-First mandate and AI-enabled prospecting / market-analysis language.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">EQ / MATRIX</span><span class="acc-q">Tell me about a time you had to build trust with stakeholders who had different priorities.</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>Choose one real story:</b> SAP AI adoption, 180DC client work, or Noon Minutes.
-        <br><br>
-        Structure the action around: 1) how you understood each stakeholder’s success criteria, 2) how you changed your communication for each audience,
-        3) what trade-off you made, and 4) what decision or adoption followed.
-      </div>
-      <div class="callout amber small">The job description explicitly references high-trust relationships and complex, matrixed decision-making units. Make the stakeholder map visible in your answer.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">NEGOTIATION</span><span class="acc-q">Tell me about a time you created a win-win outcome or negotiated a trade-off.</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        <b>No clean negotiation story is documented in the uploaded files.</b>
-        Use a genuine example from consulting, SAP, INJAZ or a team project where two parties wanted different things.
-        The answer should show: interests → constraints → options → trade-off → agreement → outcome.
-      </div>
-      <div class="callout red small">Do not turn a normal presentation story into “negotiation” unless there was an actual trade-off or objection to resolve.</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">LEARNING</span><span class="acc-q">You are not from a networking background. How will you get technically credible quickly?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “I’m comfortable being transparent that networking is not my original academic domain. What gives me confidence is that I have repeatedly had to learn new technical tools and business contexts quickly —
-        from quality analytics and Minitab at ArcelorMittal, to Power BI and automation at P&amp;G, to enterprise processes and AI GTM at SAP.
-        My approach is to learn the architecture at business-value level first, then deepen the technical layer through the bootcamp, certifications, practice and close collaboration with Solutions Engineers.
-        I would rather ask a strong technical question than bluff an answer.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">SAFE-TO-FAIL</span><span class="acc-q">What does a “safe-to-fail” learning environment mean to you?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “To me it means using the training environment to take intelligent risks, get feedback quickly, and correct weak habits before they affect a real customer.
-        I would want to use the simulations to practice discovery, objection handling and technical positioning — not to look perfect.
-        The important part is that the same mistake should not survive the feedback cycle twice.”
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn"><span class="pill current">IAE</span><span class="acc-q">What do you think an Inside Account Executive in Dubai will actually be responsible for?</span><span class="chev">▼</span></button>
-    <div class="acc-body">
-      <div class="answer">
-        “I expect it to be a quota-carrying customer role inside Global Virtual Sales: finding and developing opportunities, understanding customer priorities,
-        working with Solutions Engineers and partners on the technical solution, advancing the sales cycle, and building long-term account relationships.
-        The outcome is not activity for its own sake — it is customer value and qualified revenue.”
-      </div>
-    </div>
-  </div>
-
-</section>
-
-
-<section class="tab" id="roleplay">
-  <div class="section-head">
-    <h2>Sales Roleplay</h2>
-    <p>Do not “perform sales.” Diagnose first. Your job is to show curiosity, structure and a clean next step.</p>
-  </div>
-
-  <div class="grid two">
-    <div class="card">
-      <div class="kicker">Sell Me This Pen</div>
-      <h3>Discovery-first structure</h3>
-      <ol class="numlist">
-        <li><b>Ask:</b> “Before I pitch it, what do you normally use a pen for — quick notes, signing documents, or something else?”</li>
-        <li><b>Probe:</b> “What do you dislike about the one you use now?”</li>
-        <li><b>Align:</b> pick one relevant feature/value only.</li>
-        <li><b>Check:</b> “Would that solve the issue you mentioned?”</li>
-        <li><b>Close:</b> “Would you be open to trying this one?”</li>
-      </ol>
-      <div class="callout green small">
-        The test is not whether the pen is impressive. The test is whether you can <b>discover before pitching</b>.
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="kicker">Live Objection</div>
-      <h3>“Your solution is too expensive.”</h3>
-      <p>
-        “That makes sense. When you say expensive, is the concern the absolute budget, the comparison with another option,
-        or that the value is not clear enough yet?”
-      </p>
-      <p>
-        Then respond to the real objection. Do not discount immediately. Re-anchor on business impact and agree a next step.
-      </p>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">Mini Discovery Call — Cisco Scenario</div>
-    <h3>Customer says: “We’re rolling out more AI workloads next year.”</h3>
-    <div class="grid two">
-      <div>
-        <h4>Questions you could ask</h4>
-        <ul>
-          <li>“Where will those workloads run — centralized data center, cloud, edge, or a mix?”</li>
-          <li>“What is the biggest constraint today: performance, security, visibility, cost, or time to deploy?”</li>
-          <li>“Who owns the business outcome, and who owns the infrastructure decision?”</li>
-          <li>“What happens if the current environment cannot support the scale you need?”</li>
-        </ul>
-      </div>
-      <div>
-        <h4>How to position</h4>
-        <p class="small">
-          Do not jump straight to product names. Summarize the problem first:
-          “It sounds like the priority is scaling AI without adding operational and security complexity.”
-          Then bring the Solutions Engineer into the relevant architecture discussion.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">Account Planning Framework</div>
-    <div class="framework">
-      <div><b>1. Trigger</b><br>Why now?</div>
-      <div><b>2. Map</b><br>Who matters?</div>
-      <div><b>3. Hypothesis</b><br>Likely pain?</div>
-      <div><b>4. Discover</b><br>Validate it</div>
-      <div><b>5. Advance</b><br>Clear next step</div>
-    </div>
-    <p class="small muted">Use this structure for “How would you approach a market?”, “How would you prospect?”, or “What would you do with a new territory?”</p>
-  </div>
-</section>
-
-
-<section class="tab" id="ask">
-  <div class="section-head">
-    <h2>Questions to Ask Them</h2>
-    <p>Pick 3 based on who is interviewing you. Ask questions that make the interviewer talk about success, coaching, customers and the Dubai landing role.</p>
-  </div>
-
-  <div class="grid two">
-    <div class="card">
-      <span class="pill current">BEST</span>
-      <h3>“What separates ASRs who fast-track into quota-carrying roles from those who need the full program to get there?”</h3>
-      <p class="small muted">Shows ambition and references the current program language without asking something already answered on the job description.</p>
-    </div>
-    <div class="card">
-      <span class="pill current">BEST</span>
-      <h3>“During the rotations, how do ASRs and Associate Solutions Engineers divide the customer conversation?”</h3>
-      <p class="small muted">Signals that you understand Cisco selling is collaborative and that the technical/commercial partnership matters.</p>
-    </div>
-    <div class="card">
-      <span class="pill current">BEST</span>
-      <h3>“What would excellent performance look like in the first 90 days at Bedfont Lakes?”</h3>
-      <p class="small muted">Better than asking what happens in the first 90 days; the posting already tells you it is bootcamp.</p>
-    </div>
-    <div class="card">
-      <span class="pill current">DUBAI</span>
-      <h3>“When ASRs transition back to Dubai as Inside Account Executives, what does the first book of business typically look like?”</h3>
-      <p class="small muted">Shows you have read the actual landing role and are thinking beyond the training year.</p>
-    </div>
-    <div class="card">
-      <span class="pill current">MARKET</span>
-      <h3>“Which customer problems are showing up most often in the UAE right now — AI infrastructure, security, workplace modernization, or something else?”</h3>
-      <p class="small muted">Gives you live market intelligence and lets you connect your SAP / AI experience naturally.</p>
-    </div>
-    <div class="card">
-      <span class="pill purple">CULTURE</span>
-      <h3>“What is something about the CSAP culture that is difficult to understand until you are actually in the program?”</h3>
-      <p class="small muted">Invites a personal answer and is hard to research online.</p>
-    </div>
-  </div>
-
-  <div class="callout amber">
-    <b>Prioritize:</b> role, team, coaching and success. Compensation or detailed logistics are fine with a recruiter,
-    but if you are speaking to a hiring manager and time is short, use your questions to strengthen your candidacy first.
-  </div>
-</section>
-
-
-<section class="tab" id="audit">
-  <div class="section-head">
-    <h2>Audit &amp; Risks</h2>
-    <p>This is the cleanup pass on the original prep file. Green/current items are retained; red items were removed or corrected because they were unsupported or inaccurate.</p>
-  </div>
-
-  <div class="card">
-    <div class="audit-row">
-      <div><span class="pill removed">CORRECTED</span></div>
-      <div><b>“American University of Georgia” / name variants</b><br><span class="small muted">Your resume says Khaled Almuwahed and American University of Sharjah.</span></div>
-      <div class="small">Use the resume spelling in the interview.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill removed">REMOVED</span></div>
-      <div><b>“S/4HANA certified before SAP”</b><br><span class="small muted">Your resume lists SAP’s “Discovering End-to-End Business Processes for the Intelligent Enterprise” certification, not an S/4HANA certification.</span></div>
-      <div class="small">Talk about the actual certification name if asked.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill removed">REMOVED</span></div>
-      <div><b>Claude Code / multi-agent workflow claim</b><br><span class="small muted">Not supported by the uploaded resume.</span></div>
-      <div class="small">Your SAP AI adoption / GTM work is already strong enough.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill removed">REMOVED</span></div>
-      <div><b>“First P&amp;G intern to get a project into the next fiscal-year strategy”</b><br><span class="small muted">Not supported by the resume.</span></div>
-      <div class="small">Use the defensible 27% and 80% outcomes instead.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill current">UPDATED</span></div>
-      <div><b>Post-CSAP role</b><br><span class="small muted">Old guide said generic “Account Executive.” Current UAE ASR posting says <b>Inside Account Executive</b> in Dubai.</span></div>
-      <div class="small">Know the exact landing role.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill current">UPDATED</span></div>
-      <div><b>Program structure</b><br><span class="small muted">Current posting confirms months 1–3 bootcamp, months 3–12 three rotations, quarterly checkpoints, AI-first training and 12 months at Bedfont Lakes.</span></div>
-      <div class="small">This is stronger than relying only on the 2022 candidate pack.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill removed">SOFTENED</span></div>
-      <div><b>“CSAP teaches technical architecture from zero”</b><br><span class="small muted">The sales posting welcomes diverse degree backgrounds, but still expects digital fluency and technical-sales learning.</span></div>
-      <div class="small">Say “I don’t need to arrive as a network engineer; I do need to learn quickly.”</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill removed">REMOVED</span></div>
-      <div><b>Personal “flight risk” claims: BizOps, entrepreneurship, PL-300, SAP extension, P&amp;G re-engagement</b><br><span class="small muted">Those are not supported by the uploaded files.</span></div>
-      <div class="small">Do not prepare for a problem the interviewer may not even see.</div>
-    </div>
-    <div class="audit-row">
-      <div><span class="pill removed">CORRECTED</span></div>
-      <div><b>Assessment center certainty</b><br><span class="small muted">Cisco’s 2022 generic candidate pack includes assessment-center resources, but that does not prove your specific CSAP process will contain one.</span></div>
-      <div class="small">Prepare only if your recruiter confirms it.</div>
-    </div>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="kicker">Risk 1</div>
-      <h3>No direct quota ownership</h3>
-      <p><b>Frame:</b> commercial and client exposure are the foundation; CSAP is the deliberate next capability.</p>
-      <p class="small quote-line">“I’m not trying to claim I’ve already done the job. I’m showing that I have the ingredients to learn it quickly.”</p>
-    </div>
-    <div class="card">
-      <div class="kicker">Risk 2</div>
-      <h3>Too analytical / “strategy candidate”</h3>
-      <p><b>Frame:</b> every analytical example must end with a person, decision or business outcome. Do not spend 70% of an answer on the model you built.</p>
-    </div>
-    <div class="card">
-      <div class="kicker">Risk 3</div>
-      <h3>Weak rejection story</h3>
-      <p><b>Fix tonight:</b> prepare a real example where you received a no, changed your approach and kept going. Sales managers listen closely for this.</p>
-    </div>
-    <div class="card">
-      <div class="kicker">Risk 4</div>
-      <h3>Overusing AI / Stargate buzzwords</h3>
-      <p><b>Fix:</b> one precise Cisco/UAE proof point is strong. Repeating it in three answers can sound manufactured.</p>
-    </div>
-  </div>
-</section>
-
-
-<section class="tab" id="final">
-  <div class="section-head">
-    <h2>Final 24 Hours</h2>
-    <p>Use this as your execution checklist. Your progress saves locally in the browser.</p>
-  </div>
-
-  <div class="grid two">
-    <div class="card">
-      <div class="checkgroup">
-        <h3>Story Prep</h3>
-        <label class="check"><input type="checkbox" data-check="tmay"><span>Deliver the 2-minute TMAY naturally without reading.</span></label>
-        <label class="check"><input type="checkbox" data-check="pgnumbers"><span>27% and 80% P&amp;G numbers are automatic.</span></label>
-        <label class="check"><input type="checkbox" data-check="influence"><span>One specific influence-without-authority story is ready.</span></label>
-        <label class="check"><input type="checkbox" data-check="failure"><span>One genuine failure + reflection story is ready.</span></label>
-        <label class="check"><input type="checkbox" data-check="rejection"><span>One genuine rejection / resilience story is ready.</span></label>
-        <label class="check"><input type="checkbox" data-check="conflict"><span>One genuine conflict / disagreement story is ready.</span></label>
-      </div>
-
-      <div class="checkgroup">
-        <h3>Cisco / Role Knowledge</h3>
-        <label class="check"><input type="checkbox" data-check="structure"><span>Know 3-month bootcamp → 3 rotations → IAE Dubai.</span></label>
-        <label class="check"><input type="checkbox" data-check="domains"><span>Can explain Networking, Security, Collaboration and Cloud at business-value level.</span></label>
-        <label class="check"><input type="checkbox" data-check="strategy"><span>Know Cisco’s three customer priorities: modern infrastructure, cyber protection, AI/data.</span></label>
-        <label class="check"><input type="checkbox" data-check="stargate"><span>Can explain Stargate UAE in one sentence without overdoing it.</span></label>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="checkgroup">
-        <h3>Sales Skill</h3>
-        <label class="check"><input type="checkbox" data-check="pen"><span>Practiced “sell me this pen” discovery-first twice out loud.</span></label>
-        <label class="check"><input type="checkbox" data-check="account"><span>Can answer “break into a new account” using trigger → map → discovery → next step.</span></label>
-        <label class="check"><input type="checkbox" data-check="objection"><span>Practiced one objection without getting defensive or discounting immediately.</span></label>
-      </div>
-
-      <div class="checkgroup">
-        <h3>Interview Logistics</h3>
-        <label class="check"><input type="checkbox" data-check="startdate"><span>You can clearly confirm your availability for the target start date of 1 March 2027.</span></label>
-        <label class="check"><input type="checkbox" data-check="london"><span>Your full 12-month Bedfont Lakes relocation answer is fully truthful and settled.</span></label>
-        <label class="check"><input type="checkbox" data-check="questions"><span>Picked 3 questions to ask the interviewer.</span></label>
-        <label class="check"><input type="checkbox" data-check="platform"><span>Camera, mic, link, location, CV and role description are ready.</span></label>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="kicker">30-Minute Final Warm-Up</div>
-    <ol class="numlist">
-      <li><b>5 min:</b> TMAY twice — first full, second 90-second version.</li>
-      <li><b>10 min:</b> P&amp;G STAR + SAP influence + your real failure story.</li>
-      <li><b>5 min:</b> Why sales, why Cisco, why CSAP, London.</li>
-      <li><b>5 min:</b> Pen roleplay + new-account framework.</li>
-      <li><b>5 min:</b> Read your three interviewer questions and stop studying.</li>
-    </ol>
-  </div>
-
-  <div class="callout green">
-    <b>You are ready when:</b> you can explain your story without sounding like a speech,
-    defend every number you use, admit what you have not done yet, and make your desire for direct commercial ownership feel like the logical next step.
-  </div>
-
-  <div class="card">
-    <div class="kicker">Source &amp; Verification Notes</div>
-    <ul class="small muted">
-      <li><b>Uploaded resume:</b> all education, experience, metrics, skills and certifications used in the story bank.</li>
-      <li><b>Uploaded Cisco EMEA Candidate Resources (2022):</b> pages 7–8 — motivation, communication, competency-based questions and STAR; page 3–4 — CSAP / Bedfont Lakes resources.</li>
-      <li><b>Uploaded original prep HTML:</b> used as the audit baseline; unsupported personal and credential claims were removed.</li>
-      <li><b>Exact UAE CSAP ASR job details you provided:</b> Job ID 2018684; posted 31 July 2026; target start 1 March 2027; Year 1 at Bedfont Lakes; Year 2 in Dubai; 12-month accelerator; 3 rotations; quarterly checkpoints; AI-First mandate; mentor and certifications; transition to Inside Account Executive in Global Virtual Sales.</li>
-      <li><b>Cisco current strategy / newsroom:</b> modern infrastructure, cyber protection, AI &amp; data; critical infrastructure for the AI era; Stargate UAE role.</li>
-      <li><b>180 Degrees Consulting official positioning:</b> world’s largest university-based consultancy for nonprofits and socially conscious organizations.</li>
-    </ul>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  Prepared for interview practice. Do not memorize every sentence; memorize the logic, facts, proof points and transitions.
-</footer>
-
+<header><div class="w">
+<div class="m">Assessment Centre · Associate Sales Representative · Interview</div>
+<h1>Cisco CSAP, <em>STAR-L</em> Interview Playbook</h1>
+<div>Khaled Almuwahed · 30 minutes · Account Managers from Sales Enablement, Field Sales and Global Velocity Sales</div>
+<div class="bd"><span>BEHAVIORAL ONLY</span><span>NO TECHNICAL READ-UP</span><button id="th">Toggle theme</button><button id="cv">Cover mode: off</button></div>
+</div></header>
+<nav><div class="w" id="nav"></div></nav>
+<main><div class="w" id="app"></div></main>
 <script>
-const tabs=[...document.querySelectorAll('.tab')];
-const navBtns=[...document.querySelectorAll('.nav button')];
+const $=s=>document.querySelector(s);
+const f=t=>t.replace(/\[\[(.+?)\]\]/g,'<mark class="f">$1</mark>');
+const KEYS={S:'Situation',T:'Task',A:'Action',R:'Result',L:'Learning'};
+const row=o=>Object.keys(KEYS).filter(k=>o[k]).map(k=>`<div class="row ${k}"><span class="k">${k}</span><div><b>${KEYS[k]}:</b> <span class="ans">${f(o[k])}</span></div></div>`).join('');
 
-function showTab(id){
-  tabs.forEach(t=>t.classList.toggle('active',t.id===id));
-  navBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-navBtns.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
-
-document.querySelectorAll('.acc-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    btn.classList.toggle('open');
-    btn.nextElementSibling.classList.toggle('open');
-  });
-});
-
-function copyBlock(id, btn){
-  const txt=document.getElementById(id).innerText;
-  navigator.clipboard.writeText(txt).then(()=>{
-    const old=btn.textContent; btn.textContent='Copied';
-    setTimeout(()=>btn.textContent=old,1000);
-  });
-}
-
-const questions=[
-  ["Why do you want a career in sales?","Show a deliberate move toward customer and revenue ownership. Use the pattern across P&G, 180DC and SAP."],
-  ["Why Cisco?","Use 3 reasons: AI-era infrastructure timing, CSAP structure, UAE relevance. Avoid prestige-only answers."],
-  ["Why CSAP specifically?","Current structure: bootcamp, rotations, AI simulations, mentorship, certifications, IAE Dubai."],
-  ["Tell me about a time you used data to change a process.","Use P&G. Spend most time on your actions and defend the 27% / 80% numbers."],
-  ["Tell me about a time you influenced without authority.","Use one specific SAP AI adoption example from memory. Do not invent stakeholder resistance."],
-  ["Tell me about a failure.","Use a real story. Keep situation short; focus on response and what you changed afterward."],
-  ["How do you handle rejection?","Treat rejection as data, diagnose why, adjust, continue. Add one real example."],
-  ["How would you break into a new account?","Trigger → stakeholder map → hypothesis → discovery → SE → measurable next step."],
-  ["What is changing about networking because of AI?","Performance + distribution + security + observability. Stay at customer-business level."],
-  ["What are three qualities of a great salesperson?","Curiosity, resilience, translate complexity into business value — with proof."],
-  ["How do you feel about the London relocation?","Be truthful. Explain why the immersive cohort year is valuable and that Dubai is your intended market."],
-  ["Why should we hire you?","Analytical rigor + commercial exposure + AI/digital fluency + bilingual UAE fit; admit quota is the skill you want to build."],
-  ["Where do you see yourself in five years?","Enterprise selling credibility in the region; customer trust and consistent commercial performance."],
-  ["Sell me this pen.","Ask first. Probe pain. Align one benefit. Check. Close."],
-  ["Why leave SAP for Cisco?","Do not criticize SAP. Frame Cisco/CSAP as the next capability: direct customer and revenue ownership."],
-  ["How have you used AI to improve decision-making or accelerate work?","Use SAP AI adoption and P&G automation. Tie the tool to a real workflow and outcome."],
-  ["Tell me about building trust across stakeholders with different priorities.","Use SAP, 180DC or Noon. Make the stakeholder map and communication adaptation explicit."],
-  ["Tell me about a win-win negotiation.","Use a genuine trade-off story. Interests → constraints → options → agreement → result."],
-  ["How will you get technically credible without a networking degree?","Show repeated fast learning, business-value-first thinking, certifications, practice and SE partnership."],
-  ["What does safe-to-fail mean to you?","Intelligent practice, fast feedback and visibly improving after mistakes."],
-  ["What will you do as an Inside Account Executive in Dubai?","Opportunity creation, discovery, SE/partner collaboration, advancing pipeline, account relationships and quota outcomes."]
+const STORIES=[
+{n:'P&G: automated the reporting, then sold it',t:'Ownership · influence · results',
+ S:'P&G Supply Network Operations. Disposal cost reporting was manual, slow and error-prone.',
+ T:'I owned fixing it and getting senior leadership to adopt it, [[no one asked me to; say who set the goal]].',
+ A:'I rebuilt the process in Power BI and Power Automate, end to end. [[Name 1 failed attempt you fixed]]. Then I presented it to senior leadership in terms of disposal cost, not tooling.',
+ R:'Reporting time down 80%. It fed a project that delivered a 27% disposal cost reduction, and I was the first intern to have a project folded into the next fiscal year strategy.',
+ L:'[[One line, true to you. Draft: a fix only lands when it is framed around the decision-maker\'s number, so I now open with their metric.]]'},
+{n:'Rahatak: CFO in the INJAZ National Competition',t:'Pressure · pitching · numbers',
+ S:'INJAZ National Competition. As CFO of Rahatak, we built autonomous airport wheelchairs, an accessibility solution, and had to pitch it to the CFO of Visa, the CEO of TotalEnergies and partners from EY.',
+ T:'I had to make three very different senior people care enough to back it. [[Add your exact role on the pitch: financials, Q&A on numbers?]]',
+ A:'I tailored the language to each person. For the CFO I spoke in finance: [[name 1 number or metric you used]]. For the others I made it personal: I asked them to picture a parent, grandparent or loved one struggling to get through an airport. [[Add how you prepared or handled one tough question.]]',
+ R:'[[Placement, judge feedback, or a concrete reaction from one of the leaders.]]',
+ L:'Facts convince, but people act on what they feel, so I now decide before every pitch what each listener personally cares about. [[Adjust to your own words.]]'},
+{n:'Noon Minutes: dark store operations project',t:'Problem-solving · real client · tradeoffs',
+ S:'Senior design project with Noon Minutes on dark store operations optimization, Aug 2025 to Apr 2026.',
+ T:'[[Your slice of the project, and the constraint or deadline.]]',
+ A:'[[The analysis you ran, the disagreement or obstacle you handled, how you presented it to Noon.]]',
+ R:'[[Metric: pick time, throughput, cost, or adoption.]]',
+ L:'[[What real operations taught you that a classroom model did not.]]'},
+{n:'Ghana: logistics owner in Tamale',t:'Ownership · logistics · reliability',
+ S:'International volunteer trip with Sharjah Charity International to Tamale, Ghana, Dec 2024, where I was a volunteer leader.',
+ T:'We volunteered to renovate schools and rebuild critical infrastructure in the poorest town. I owned all logistics and had to make sure every material arrived on time.',
+ A:'[[List 3 things you did: how you planned orders, tracked deliveries, and fixed one delay or shortage.]]',
+ R:'[[What was renovated or rebuilt, and how many students or residents it served. Even one number helps.]]',
+ L:'[[Draft: on-site work only moves as fast as the slowest missing material, so I now plan backwards from the work date and confirm each delivery early.]]'},
+{n:'SAP CRO: learning fast and building with AI',t:'Learning agility · judgment with AI',
+ S:'Global Sales Strategy for Business Transformation Management intern in SAP\'s Chief Revenue Office, since May 2026. Unfamiliar domain.',
+ T:'[[The task you were given and by when.]]',
+ A:'I completed SAP\'s end-to-end business process learning before day one, then built multi-agent workflows with Claude Code. [[Name the moment AI got something wrong and how you caught it.]]',
+ R:'[[Time saved, decision enabled, or who now uses it.]]',
+ L:'AI drafts fast, I own the checking. [[Add your own rule.]]'},
+{n:'P&G: winning over category leaders who said no',t:'Influence · disagreement · things not going to plan',
+ S:'At P&G I had built an automated reporting solution, but the different category leaders initially rejected it. They wanted the work kept manual to cover their own needs.',
+ T:'Without any authority over them, I had to get each leader to trust the solution, or it would never scale.',
+ A:'Each leader came from a different background with different needs, so I did not pitch one version. [[Name what you did: 1-to-1 conversations, asking what manual work protected, adding their requirement into the automation.]] Then I took the combined solution to senior leadership.',
+ R:'The leaders came around and the solution cut reporting time 80% and fed the 27% disposal cost reduction. [[Add how many leaders you won over.]]',
+ L:'A rejection is usually an unmet need in disguise, so I now ask what a stakeholder is protecting before I defend my solution.'}
 ];
 
-let currentPractice=-1;
-function randomQuestion(){
-  let idx=Math.floor(Math.random()*questions.length);
-  if(questions.length>1 && idx===currentPractice) idx=(idx+1)%questions.length;
-  currentPractice=idx;
-  document.getElementById('practice-q').textContent=questions[idx][0];
-  const a=document.getElementById('practice-a');
-  a.textContent=questions[idx][1];
-  a.style.display='none';
-}
-function togglePracticeAnswer(){
-  const a=document.getElementById('practice-a');
-  a.style.display=(a.style.display==='block'?'none':'block');
-}
 
-const checks=[...document.querySelectorAll('input[data-check]')];
-checks.forEach(c=>{
-  const key='csap-'+c.dataset.check;
-  c.checked=localStorage.getItem(key)==='1';
-  c.closest('.check').classList.toggle('done',c.checked);
-  c.addEventListener('change',()=>{
-    localStorage.setItem(key,c.checked?'1':'0');
-    c.closest('.check').classList.toggle('done',c.checked);
-  });
-});
+const SOL=[
+{tag:'Solution 1',n:'Cisco AI Infrastructure',one:'Cisco page: "Securely scale AI." High-performance networking, security, observability and AI-native tools.',
+ p:'Companies want to run AI but the network, security and operations underneath it are not built for the load, and AI agents can exploit gaps.',
+ w:'AI spending is real: Cisco took $9.3B of hyperscaler AI orders in FY26 and expects AI traffic on networks to triple in three years, and agentic AI adds new security risk.',
+ d:'One stack that combines networking, security and observability, instead of buying and stitching them separately. Secure AI Factory is a validated design built with Nvidia.',
+ c:'CIOs, CTOs, data center and infrastructure owners, and the CFO who signs off the AI budget.',
+ k:'AI Networking, Secure AI Factory, Silicon One, Unified Edge, Cisco Cloud Control and AI Canvas (AgenticOps), AI Defense, Splunk Observability, Cisco IQ.',
+ l:'AI only pays back if the network under it does not become the bottleneck or the breach, and Cisco is one of the few vendors selling all three layers together.'},
+{tag:'Solution 2',n:'Cisco Secure Networking',one:'Cisco page: "Defense starts with the network." Fuse security into the network to stop and contain threats faster.',
+ p:'Attackers move across networks faster than people can respond, and agents, IoT devices and workloads now outnumber humans on the network.',
+ w:'Cisco says quantum threats already put harvested data at risk, and it committed to quantum-safe capabilities across most of its core portfolio by December 2026.',
+ d:'Security is built into the network itself: protect every flow, verify every entity, prepare for post-quantum, and govern with one policy through Cisco Cloud Control. Live Protect patches at runtime with no reboot.',
+ c:'CISOs and security teams, network leaders, and boards worried about breach cost and downtime.',
+ k:'Live Protect, zero-trust identity for devices and agents, post-quantum encryption, Hybrid Mesh Firewall, Splunk Enterprise Security.',
+ l:'A breach costs far more than the prevention, and putting security into the network means it works at the speed attackers do.'},
+{tag:'Solution 3',n:'Cisco Future-Proofed Workplaces',one:'Cisco page: "Modernize how business happens, everywhere it happens."',
+ p:'Misaligned IT, HR and facilities strategy, inconsistent employee and customer experiences, more threats across distributed sites, and rising demands from AI and IoT devices.',
+ w:'Hybrid work is permanent, AI and connected devices keep growing, and Cisco reported its best collaboration quarter in seven years in Q4 FY26.',
+ d:'Only Cisco unifies networking, security, observability and collaboration with AI embedded throughout, on one platform that builds value over time.',
+ c:'COOs, IT and facilities heads, and multi-site owners like retail, hospitality and offices who want better experience at lower cost.',
+ k:'Wi-Fi and switching, Catalyst SD-WAN, SASE, Zero Trust Access, smart buildings, Webex devices and AI, user protection.',
+ l:'Every site, from a head office to a branch, gets the same secure, simple experience, and the savings show up in energy, space and IT time.'}
+];
+const Q=[
+['Behavioral','Tell me about a time you influenced someone who did not report to you.',5,'Clarity and Ownership. Do they hear "I", and did you move a senior person?','Spend 45% of your time on Action. Show how you framed it around their priority.','Saying "we" for the entire answer.'],
+['Behavioral','Tell me about a time you delivered a measurable result.',0,'Do you know your numbers and your own contribution?','Say 80% and 27% in the first 20 seconds of Result. Split what you did from what the team did.','Burying the number at the end.'],
+['Behavioral','Tell me about a time you worked under a tight deadline or pressure.',1,'Composure and prioritisation.','Use Rahatak (three senior audiences, one pitch) or Noon. Name what you prioritised and why.','A story where the pressure was only "lots of work".'],
+['Behavioral','Tell me about a time something did not go to plan. What did you learn?',5,'Continuous Improvement. Learning is scored, so make it the second longest part.','Lead with the category leaders rejecting the solution, then how you changed your approach. End on the habit you now have.','A fake failure ("I work too hard").'],
+['Behavioral','Tell me about a time you learned something unfamiliar quickly.',4,'Learning Agility. This is a named CSAP capability.','Show your method: what you read, who you asked, how you tested yourself.','Only saying "I am a fast learner".'],
+['Behavioral','Tell me about a time you used AI. Where did you overrule it?',4,'Judgment with AI. Expect this in the Presentation too.','Give one specific wrong output, how you caught it, and your checking rule.','"AI did most of it."'],
+['Behavioral','Tell me about a time you took accountability for something others depended on.',3,'Ownership without hiding behind the team.','Use Ghana: you owned logistics and delivery timing. Say what you personally decided when a delivery was at risk.','Listing everyone else\'s work.'],
+['Behavioral','Tell me about a time you disagreed with a teammate, client or stakeholder.',5,'Can you handle friction and still keep the relationship?','Use the category leaders who wanted manual work. Show you listened to each need instead of arguing.','Making the other person the villain.'],
+['Motivation','Why sales, and why Cisco? (PREP, 45 seconds)',null,'Sales as a choice, not a fallback. Research done.','<b>Point:</b> I want to own an outcome, not only recommend one. <b>Reason:</b> at P&G I had to sell my own solution to leadership and it stuck. <b>Example:</b> Cisco took $9.3B of hyperscaler AI orders in FY26 and is a preferred technology partner in Stargate UAE, because AI runs on networking and security. <b>Point:</b> CSAP puts me in that engine.','Generic praise about size or brand.'],
+['Trap','If you could redo the last exercise, what would you change?',null,'Self-awareness in real time. Candidates report this between activities.','Pick one specific, small behavior: "I would have asked one more follow-up before moving on." Then say the fix.','"Nothing, it went well."'],
+['Trap','You have other options, including an SAP extension. Why commit to CSAP?',null,'Flight risk and commitment.','State it plainly: quota-carrying experience makes any later path stronger, and this is the program I chose on purpose. Do not volunteer other ambitions.','Sounding undecided about the year at the hub.']
+];
+
+const T={
+'Plan':()=>`<h2>Game plan</h2><p class="lead">Source: Cisco's Interview candidate instructions. Every answer uses STAR-L. Learning is the fifth beat, and it is scored.</p>
+<div class="c"><h3>Time split for a ~2 minute answer</h3><div class="bar"><b class="S" style="width:15%">S</b><b class="T" style="width:10%">T</b><b class="A" style="width:40%">A</b><b class="R" style="width:20%">R</b><b class="L" style="width:15%">L</b></div>
+<small>Action is the largest slice. Say "I did", never "we did". Roughly 5 to 7 questions fit in 30 minutes, so aim for 2 minutes each and stop.</small>
+${Object.keys(KEYS).map(k=>`<div class="row ${k}"><span class="k">${k}</span><div><b>${KEYS[k]}</b> ${{S:'Context from work, volunteering or academics. 2 sentences.',T:'Your specific responsibility, deadline or conflict.',A:'Exact steps YOU took. The core of the answer.',R:'Measurable outcome from your actions.',L:'Takeaway plus how you do it better next time.'}[k]}</div></div>`).join('')}</div>
+<div class="g"><div class="c"><h3>What they score</h3><ul><li><b>Clarity and Ownership:</b> your contribution, your accountability.</li><li><b>Problem-Solving:</b> navigate a challenge, drive an outcome.</li><li><b>Continuous Improvement:</b> the Learning beat.</li></ul></div>
+<div class="c"><h3>The room</h3><ul><li>Account Managers from Sales Enablement, Field Sales and Global Velocity Sales. Velocity is Cisco's high-velocity inside sales motion, where CSAP alumni land.</li><li>Recruiters may stay in the room between activities. Be consistent all day.</li></ul></div></div>
+<div class="c"><h3>60-second opener (Funnel), in case they start soft</h3><p class="ans">Industrial engineer from AUS who kept getting pulled from the models toward the commercial problem and the pitch. At P&G I built the fix and sold it to leadership, and it was folded into next year's strategy. Now at SAP's Chief Revenue Office I see strategy from the top, and I want to own the customer conversation. Cisco's AI infrastructure momentum, plus its position in the UAE, is why CSAP is the place to do that.</p></div>
+<div class="c"><h3>Practice tools</h3><p><button class="p" id="tm">Start 2:00 answer timer</button> <b id="tv" class="m" style="font-size:16px"></b></p><p><small>Cover mode blurs answers so you rehearse from the STAR-L letters. Tap a blurred line to peek.</small></p>
+<p><small>AI mock prompt (from Cisco's own suggestion):</small></p><p class="ans"><small id="pr">Act as a Cisco assessor from Field Sales interviewing me for the Associate Sales Representative role. Ask one behavioral question at a time, wait for my answer, then check that I hit Situation, Task, Action, Result and Learning, that I said "I" not "we", and that Learning is specific. Tell me what to cut.</small></p><button class="p" id="cp">Copy prompt</button></div>`,
+'Stories':()=>`<h2>Story bank</h2><p class="lead">Six stories cover almost any question. Yellow blocks are gaps only you can fill. Fill them, then say each aloud in 2 minutes.</p>`+STORIES.map((s,i)=>`<details ${i?'':'open'}><summary><span><span class="tag">${s.t}</span><br>${s.n}</span></summary><div class="in">${row(s)}</div></details>`).join(''),
+'Questions':()=>`<h2>Question bank</h2><p class="lead">${Q.length} likely questions. Each points to a story and shows the angle to take.</p>`+Q.map(q=>`<details><summary><span><span class="tag">${q[0]}</span>${q[1]}</span></summary><div class="in"><p><b>Testing:</b> ${q[3]}</p>${q[2]!==null?`<p><b>Use story:</b> ${STORIES[q[2]].n}</p>`:''}<p class="ans">${f(q[4])}</p><div class="w2"><b>Avoid:</b> ${q[5]}</div></div></details>`).join(''),
+'Cisco':()=>`<h2>Cisco brief</h2><p class="lead">Keep this light. Cisco says no technical read-up is needed, but one sharp fact per answer earns credibility.</p>
+<div class="g"><div class="c"><h3>Where Cisco is now</h3><ul><li>FY26 revenue $63.3B, up 12%. Q4 was $17.25B, up 18%.</li><li>Hyperscaler AI infrastructure orders hit $9.3B in FY26, about 4.5x prior year. $7.5B of AI revenue is expected in FY27.</li><li>Cisco Live 2026 theme: AgenticOps and Cisco Cloud Control, with AI Defense for securing agents.</li></ul></div>
+<div class="c"><h3>UAE angle</h3><ul><li>Cisco signed on as a preferred technology partner for Stargate UAE (1 GW target, first 200 MW planned for 2026) with G42, OpenAI, Oracle, NVIDIA and SoftBank.</li><li>Say "signed on to provide networking, security and observability", not that it is already built.</li></ul></div></div>
+<div class="c"><h3>The program</h3><p>12 months: about 3 months of bootcamp, three rotations with quarterly checkpoints, then an Inside Account Executive role. Alumni mentors and Associate Solutions Engineers support you.</p><div class="w2 ok"><b>Hub:</b> London. Say it confidently. Confirm start dates with your recruiter.</div></div>
+<h3 style="margin:18px 0 6px">The three solutions (from Cisco's own pages)</h3>
+<p class="lead">Interview answers do not need these, but each one gives you a sharp fact and ties to the Presentation activity. Anchor on outcomes and budget, not features.</p>
+${SOL.map((s,i)=>`<details ${i?'':'open'}><summary><span><span class="tag">${s.tag}</span>${s.n}</span></summary><div class="in"><p><i>${s.one}</i></p>
+<div class="row A"><div><b>Problem:</b> ${s.p}</div></div><div class="row S"><div><b>Why now:</b> ${s.w}</div></div><div class="row T"><div><b>Differentiator:</b> ${s.d}</div></div><div class="row R"><div><b>Who cares:</b> ${s.c}</div></div>
+<p><b>Inside it:</b> ${s.k}</p><div class="w2 ok"><b>Sample line:</b> <span class="ans">${s.l}</span></div></div></details>`).join('')}</div>
+<small>Sources: Cisco Q4 FY26 release and call coverage (Aug 2026), Cisco Stargate UAE release (May 2025), Cisco Live 2026 coverage, Cisco CSAP postings (Jul 2026).</small>`,
+'Ask them':()=>`<h2>Questions to ask</h2><p class="lead">Pick two. They are Account Managers, so ask about their real job.</p>`+[
+['What did the ASRs who progressed fastest do differently in their first 90 days?','Signals: coachability and drive.'],
+['How do Field Sales and Velocity work together on the same customer?','Signals: you understand the sales model.'],
+['What is one mistake you made early as an Account Manager, and what did you change?','Signals: it mirrors the Learning beat.'],
+['How are AI tools changing your own prospecting and account planning?','Signals: current and curious about AI in sales.']].map(a=>`<div class="c"><h3>${a[0]}</h3><small>${a[1]}</small></div>`).join('')+`<div class="w2"><b>Never ask:</b> anything on the CSAP page, salary before an offer, or whether cold outreach is really required.</div>`,
+'Risks':()=>`<h2>Risks and checklist</h2><div class="g">`+[
+['No quota experience','Name it first: you sold your own solution to leadership at P&G and that is your closest proof. "I have not carried a quota yet, which is why I want this program."'],
+['Saying "we"','Rehearse each story with only "I". Assessors score individual contribution.'],
+['Thin Learning beat','Write one specific behavior change per story, not "I learned to communicate".'],
+['Flight risk','Interest in strategy and building things is real. Frame quota ownership as a foundation, not a detour.'],
+['Year at the hub','Settle your answer before you walk in. Hesitation reads as attrition risk.']].map(r=>`<div class="c"><h3>${r[0]}</h3><small>${r[1]}</small></div>`).join('')+`</div><h3 style="margin:18px 0 4px">Checklist</h3><div id="cl"></div>`
+};
+const CL=['Filled every yellow block in the 6 stories','Said each story aloud in under 2 minutes','Checked each answer for "I" vs "we"','Wrote a specific Learning line for every story','Ran the AI mock interview at least twice','Can state 3 Cisco facts without notes','Chose 2 questions to ask','Confirmed start dates with recruiter','Prepared a one-line answer to "what would you redo?"','Tested camera, mic and connection (or route and arrival time)'];
+const nav=$('#nav'),app=$('#app');
+Object.keys(T).forEach((k,i)=>{const b=document.createElement('button');b.textContent=k;b.onclick=()=>show(k);nav.append(b);const s=document.createElement('section');s.className='s';s.id='s'+i;s.innerHTML=T[k]();app.append(s)});
+function show(k){const ks=Object.keys(T);ks.forEach((x,i)=>{$('#s'+i).classList.toggle('on',x===k);nav.children[i].classList.toggle('on',x===k)});window.scrollTo({top:0})}
+show('Plan');
+document.addEventListener('click',e=>{const a=e.target.closest('.ans');if(a&&document.body.classList.contains('cover'))a.classList.toggle('show')});
+$('#cv').onclick=e=>{const c=document.body.classList.toggle('cover');e.target.textContent='Cover mode: '+(c?'on':'off')};
+$('#th').onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=d?'light':'dark'};
+let iv;$('#tm').onclick=()=>{clearInterval(iv);let n=120;const u=()=>{$('#tv').textContent=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')};u();iv=setInterval(()=>{n--;u();if(n<=0){clearInterval(iv);$('#tv').textContent='Time. Land the Learning.'}},1000)};
+$('#cp').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText($('#pr').textContent);e.target.textContent='Copied'};
+let st={};try{st=JSON.parse(localStorage.getItem('csapCl')||'{}')}catch(e){}
+$('#cl').innerHTML=CL.map((t,i)=>`<div class="ck ${st[i]?'d':''}" data-i="${i}"><i>${st[i]?'✓':''}</i><span>${t}</span></div>`).join('');
+$('#cl').onclick=e=>{const d=e.target.closest('.ck');if(!d)return;const i=d.dataset.i;st[i]=!st[i];d.classList.toggle('d',st[i]);d.firstChild.textContent=st[i]?'✓':'';try{localStorage.setItem('csapCl',JSON.stringify(st))}catch(e){}};
 </script>
 </body>
 </html>
